@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Daily Haven</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&family=Shantell+Sans:wght@400;600;700&family=VT323&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --yellow-light:#FFF093;
+    --yellow:#FFB72D;
+    --orange:#FE8D00;
+    --blue:#2D69AF;
+    --navy:#1F2C60;
+    --cream:#FFF9DC;
+    --white:#FFFDF5;
+    --soft-blue:#DCEBFA;
+}
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+body{
+    min-height:100vh;
+    color:var(--navy);
+    font-family:"Shantell Sans",sans-serif;
+    background:
+        linear-gradient(rgba(255,249,220,0.18),rgba(255,249,220,0.22)),
+        url("ImageAssets/BackgroundGIF.gif") center / cover fixed no-repeat;
+}
+button,a{font:inherit;}
+img{max-width:100%;display:block;}
+
+.website{
+    width:min(1100px,94%);
+    margin:28px auto 50px;
+}
+.site-header{
+    min-height:220px;
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    overflow:hidden;
+    padding:28px;
+    border:4px solid var(--navy);
+    border-radius:28px 28px 0 0;
+    background:
+        linear-gradient(rgba(31,44,96,0.18),rgba(31,44,96,0.30)),
+        url("ImageAssets/BannerImage1.jpg") center / cover no-repeat;
+}
+.header-text{
+    z-index:2;
+    padding:12px 22px;
+    border-radius:18px;
+    background:rgba(45,105,175,0.40);
+    backdrop-filter:blur(2px);
+}
+.site-header h1{
+    color:white;
+    font:700 clamp(3rem,7vw,5.5rem)/1 "Play",sans-serif;
+    text-shadow:4px 4px 0 var(--navy);
+}
+.site-header p{
+    display:inline-block;
+    margin-top:14px;
+    padding:7px 16px;
+    border:2px solid var(--navy);
+    border-radius:20px;
+    background:var(--yellow-light);
+    font:1.35rem "VT323",monospace;
+}
+.welcome-bar{
+    padding:11px 20px;
+    text-align:center;
+    background:var(--yellow);
+    border:4px solid var(--navy);
+    border-top:0;
+    font:1.55rem "VT323",monospace;
+}
+.main-layout{
+    display:grid;
+    grid-template-columns:230px 1fr;
+    gap:15px;
+    padding:15px;
+    border:4px solid var(--navy);
+    border-top:0;
+    border-radius:0 0 28px 28px;
+    background:rgba(255,249,220,0.72);
+}
+.sidebar{align-self:start;}
+.profile-box,
+.navigation-box,
+.sidebar-note,
+.page-section{
+    border:3px solid var(--navy);
+    border-radius:18px;
+    box-shadow:4px 4px 0 rgba(31,44,96,0.16);
+}
+.profile-box{
+    padding:15px;
+    margin-bottom:12px;
+    text-align:center;
+    background:rgba(255,249,220,0.94);
+}
+.profile-icon{
+    width:135px;
+    height:135px;
+    margin:0 auto 12px;
+    display:grid;
+    place-items:center;
+    overflow:hidden;
+    border:3px solid var(--blue);
+    border-radius:50%;
+    background:var(--soft-blue);
+}
+.profile-gif{
+    width:105px;
+    height:105px;
+    object-fit:contain;
+}
+.profile-box h2{
+    color:var(--orange);
+    font:700 1.25rem "Play",sans-serif;
+}
+.profile-box p{
+    margin-top:5px;
+    font:1.2rem "VT323",monospace;
+}
+.navigation-box{
+    max-height:400px;
+    overflow-y:auto;
+    padding:12px;
+    background:rgba(45,105,175,0.92);
+}
+.nav-heading{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:7px;
+    margin-bottom:10px;
+}
+.nav-heading h2{
+    color:white;
+    font:700 1.4rem "Play",sans-serif;
+}
+.nav-folder-gif{
+    width:38px;
+    height:38px;
+    object-fit:contain;
+}
+.nav-button{
+    width:100%;
+    margin-bottom:8px;
+    padding:9px 10px;
+    cursor:pointer;
+    color:var(--navy);
+    background:var(--yellow-light);
+    border:2px solid var(--navy);
+    border-radius:12px;
+    font:1.35rem "VT323",monospace;
+}
+.nav-button:hover{
+    background:var(--orange);
+    color:white;
+}
+.nav-button.active{
+    background:var(--yellow);
+    box-shadow:inset 4px 0 var(--orange);
+}
+.sidebar-note{
+    margin-top:12px;
+    padding:13px;
+    text-align:center;
+    background:var(--yellow);
+    font:1.15rem "VT323",monospace;
+}
+.sidebar-note p{
+    margin-bottom:12px;
+    line-height:1.45;
+}
+.kris-side-image{
+    width:100%;
+    height:170px;
+    object-fit:cover;
+    border:2px solid var(--navy);
+    border-radius:14px;
+}
+.content{min-width:0;}
+.page-section{
+    display:none;
+    max-height:670px;
+    min-height:650px;
+    overflow-y:auto;
+    padding:28px;
+    background:rgba(255,253,245,0.95);
+}
+.page-section.active{display:block;}
+.page-section::-webkit-scrollbar,
+.navigation-box::-webkit-scrollbar{
+    width:10px;
+}
+.page-section::-webkit-scrollbar-track,
+.navigation-box::-webkit-scrollbar-track{
+    background:var(--yellow-light);
+}
+.page-section::-webkit-scrollbar-thumb,
+.navigation-box::-webkit-scrollbar-thumb{
+    background:var(--blue);
+    border-radius:10px;
+}
+.section-title{
+    margin-bottom:20px;
+    padding-bottom:8px;
+    border-bottom:3px dashed var(--yellow);
+    color:var(--orange);
+    font:700 2.2rem "Play",sans-serif;
+}
+.section-title span{color:var(--blue);}
+
+/* HOME */
+.home-layout{
+    display:grid;
+    grid-template-columns:1fr 210px;
+    gap:22px;
+    align-items:center;
+}
+.home-text p{
+    margin-bottom:14px;
+    line-height:1.8;
+}
+.home-card{
+    min-height:230px;
+    display:grid;
+    place-items:center;
+    text-align:center;
+    padding:20px;
+    border:3px solid var(--blue);
+    border-radius:50% 50% 20px 20px;
+    background:var(--soft-blue);
+}
+.home-card div{font-size:3rem;}
+.home-card p{font:1.35rem "VT323",monospace;}
+.home-about-box{
+    margin-top:28px;
+    padding:20px;
+    border:3px solid var(--navy);
+    border-radius:16px;
+    background:var(--yellow-light);
+}
+.home-about-content{
+    display:grid;
+    grid-template-columns:1fr 280px;
+    gap:18px;
+    align-items:stretch;
+}
+.home-about-box h3{
+    margin-bottom:10px;
+    color:var(--orange);
+    font:700 1.45rem "Play",sans-serif;
+}
+.home-about-box p{
+    margin-bottom:10px;
+    line-height:1.7;
+}
+.funny-cat{
+    width:100%;
+    height:auto;
+    align-self:center;
+    object-fit:contain;
+    border:none;
+    border-radius:0;
+
+}
+
+/* GENERATOR */
+.generator-box{
+    margin:0 0 22px;
+    padding:18px;
+    text-align:center;
+    color:white;
+    background:var(--blue);
+    border:3px solid var(--navy);
+    border-radius:15px;
+}
+.generator-box p{
+    font:1.35rem "VT323",monospace;
+}
+.generator-box button,
+.watch-link{
+    display:inline-block;
+    margin:10px 4px 0;
+    padding:9px 16px;
+    cursor:pointer;
+    text-decoration:none;
+    color:var(--navy);
+    background:var(--yellow-light);
+    border:2px solid var(--navy);
+    border-radius:10px;
+    font:1.2rem "VT323",monospace;
+}
+.generator-box button:hover,
+.watch-link:hover{
+    background:var(--orange);
+    color:white;
+}
+.generator-result{
+    margin-top:12px;
+    color:var(--yellow-light);
+    font:700 1.25rem "Play",sans-serif;
+}
+
+/* WATCH */
+.watch-intro{
+    margin-bottom:15px;
+    line-height:1.7;
+}
+.keep-cinema{
+    display:grid;
+    grid-template-columns:150px 1fr;
+    gap:16px;
+    align-items:center;
+    margin-bottom:20px;
+    padding:14px;
+    border:2px dashed var(--blue);
+    border-radius:14px;
+    background:var(--cream);
+}
+.keep-cinema img{
+    width:150px;
+    max-height:120px;
+    object-fit:contain;
+    margin:auto;
+}
+.keep-cinema strong{color:var(--orange);}
+.watch-columns{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+}
+.watch-box{
+    padding:15px;
+    border:2px solid var(--navy);
+    border-radius:14px;
+}
+.watch-box:nth-child(1){background:var(--yellow-light);}
+.watch-box:nth-child(2){background:var(--soft-blue);}
+.watch-box:nth-child(3){background:#FFD894;}
+.watch-box h3{
+    margin-bottom:10px;
+    color:var(--blue);
+    font:700 1.1rem "Play",sans-serif;
+}
+.watch-box li{
+    margin:0 0 7px 18px;
+    font-size:0.82rem;
+}
+.baldi-secret{
+    margin-top:30px;
+    padding:18px;
+    text-align:center;
+    color:white;
+    background:#111;
+    border:4px solid var(--orange);
+    border-radius:15px;
+}
+.baldi-secret img{
+    width:min(410px,100%);
+    margin:0 auto 12px;
+    border:3px solid var(--yellow);
+}
+.baldi-secret h3{
+    color:var(--yellow);
+    font:2rem "VT323",monospace;
+}
+.baldi-secret p{
+    margin-top:6px;
+    font:1.2rem "VT323",monospace;
+}
+
+/* QUOTES */
+.quote-intro{margin-bottom:18px;}
+.quote-wall{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+    padding:8px;
+}
+.quote{
+    padding:7px;
+    background:white;
+    border:2px solid var(--navy);
+    box-shadow:5px 5px 0 rgba(31,44,96,0.16);
+}
+.quote:nth-child(1){transform:rotate(-2deg);}
+.quote:nth-child(2){transform:rotate(1.5deg);}
+.quote:nth-child(3){transform:rotate(1deg);}
+.quote:nth-child(4){transform:rotate(-1.5deg);}
+.quote:nth-child(5){
+    grid-column:1 / -1;
+    width:70%;
+    margin:auto;
+}
+
+/* MUSIC */
+.music-radio{
+    width:min(230px,70%);
+    margin:0 auto 18px;
+}
+.music-intro{
+    margin-bottom:16px;
+    line-height:1.7;
+}
+.music-shelf{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:16px;
+}
+.music-list{
+    padding:14px;
+    border:2px solid var(--navy);
+    border-radius:14px;
+}
+.peaceful-list{background:var(--soft-blue);}
+.fun-list{background:var(--yellow-light);}
+.music-list h3{
+    margin-bottom:12px;
+    padding-bottom:7px;
+    color:var(--blue);
+    border-bottom:2px dashed var(--blue);
+    font:700 1.25rem "Play",sans-serif;
+}
+.music-item{
+    display:flex;
+    gap:9px;
+    margin-bottom:7px;
+    padding:8px;
+    background:rgba(255,255,255,0.74);
+    border:1px solid rgba(31,44,96,0.28);
+    border-radius:8px;
+}
+.music-number{
+    color:var(--orange);
+    font:1.1rem "VT323",monospace;
+}
+.music-item strong{
+    display:block;
+    font-size:0.84rem;
+}
+.music-item small{
+    color:var(--blue);
+    font:1rem "VT323",monospace;
+}
+
+/* CONTACT */
+.contact-layout{
+    display:grid;
+    grid-template-columns:180px 1fr;
+    gap:18px;
+    align-items:start;
+}
+.contact-side-gif{
+    width:100%;
+    border:3px solid var(--navy);
+    border-radius:16px;
+    background:white;
+    padding:8px;
+}
+.contact-card{
+    padding:22px;
+    background:var(--yellow-light);
+    border:2px dashed var(--navy);
+    border-radius:15px;
+}
+.contact-card h3{
+    margin-bottom:12px;
+    color:var(--orange);
+    font:700 1.4rem "Play",sans-serif;
+}
+.contact-card p{
+    margin-bottom:12px;
+    line-height:1.7;
+}
+.contact-links{
+    display:grid;
+    gap:10px;
+    margin-top:16px;
+}
+.contact-link{
+    padding:11px 13px;
+    color:var(--navy);
+    text-decoration:none;
+    background:white;
+    border:2px solid var(--navy);
+    border-radius:10px;
+}
+.contact-link:hover{background:var(--soft-blue);}
+.reply-box{
+    margin-top:14px;
+    padding:12px;
+    text-align:center;
+    border:2px solid var(--blue);
+    border-radius:12px;
+    background:var(--soft-blue);
+    color:var(--navy);
+    font:1.3rem "VT323",monospace;
+    
+}
+
+/* CREDITS */
+.credit-line{
+    padding:14px 0;
+    border-bottom:1px dashed rgba(31,44,96,0.28);
+}
+.credit-title{
+    color:var(--blue);
+    font:1.35rem "VT323",monospace;
+}
+.credits-funny{
+    margin-top:18px;
+    padding:16px;
+    background:var(--soft-blue);
+    border:2px solid var(--navy);
+    border-radius:16px;
+    text-align:center;
+}
+.credits-funny img{
+    width:min(280px,100%);
+    margin:0 auto 12px;
+}
+.credits-funny p{
+    font:1.25rem "VT323",monospace;
+}
+
+/* FOOTER */
+footer{
+    margin-top:15px;
+    padding:13px;
+    text-align:center;
+    background:var(--yellow);
+    border:3px solid var(--navy);
+    border-radius:15px;
+    font:1.3rem "VT323",monospace;
+}
+
+/* MOBILE */
+@media (max-width:800px){
+    .main-layout,
+    .home-layout,
+    .watch-columns,
+    .music-shelf,
+    .keep-cinema,
+    .home-about-content,
+    .contact-layout{
+        grid-template-columns:1fr;
+    }
+    .page-section{
+        max-height:none;
+        min-height:auto;
+    }
+}
+@media (max-width:550px){
+    .quote-wall{
+        grid-template-columns:1fr;
+    }
+    .quote:nth-child(5){
+        grid-column:auto;
+        width:100%;
+    }
+}
+</style>
+</head>
+
+<body>
+<div class="website">
+
+<header class="site-header">
+    <div class="header-text">
+        <h1>The Daily Haven</h1>
+        <p>films • anime • music • quotes • little things</p>
+    </div>
+</header>
+
+<div class="welcome-bar">
+    ✦ hello! welcome to my little corner of the web ♫
+</div>
+
+<div class="main-layout">
+
+<aside class="sidebar">
+
+    <div class="profile-box">
+        <div class="profile-icon">
+            <img src="ImageAssets/StarSpinning.gif" alt="Spinning star" class="profile-gif">
+        </div>
+        <h2>The Daily Haven</h2>
+        <p>created by Poker</p>
+    </div>
+
+    <nav class="navigation-box">
+        <div class="nav-heading">
+            <h2>navi</h2>
+            <img src="ImageAssets/Folder.gif" alt="Retro folder" class="nav-folder-gif">
+        </div>
+
+        <button class="nav-button active" onclick="showPage('home', this)">⌂ home</button>
+        <button class="nav-button" onclick="showPage('watch', this)">📺 watch something</button>
+        <button class="nav-button" onclick="showPage('quotes', this)">✦ quote wall</button>
+        <button class="nav-button" onclick="showPage('musicPage', this)">♫ music shelf</button>
+        <button class="nav-button" onclick="showPage('contact', this)">✉ contact</button>
+        <button class="nav-button" onclick="showPage('credits', this)">★ credits</button>
+    </nav>
+
+    <div class="sidebar-note">
+        <p>
+            ♡ little recommendation
+            <br><br>
+            put on your headphones,
+            <br>
+            pick something to watch
+            <br>
+            and stay awhile.
+        </p>
+        <img src="ImageAssets/KrisStanding.jpg" alt="Kris standing" class="kris-side-image">
+    </div>
+
+</aside>
+
+<main class="content">
+
+<section class="page-section active" id="home">
+    <h2 class="section-title">hello, <span>welcome!</span></h2>
+
+    <div class="home-layout">
+        <div class="home-text">
+            <p>
+                Welcome to
+                <strong>The Daily Haven</strong>,
+                a small retro-inspired corner
+                of the internet made for slowing
+                down and finding something
+                enjoyable to do.
+            </p>
+
+            <p>
+                Browse little quotes,
+                find a film, anime or show
+                to watch, look through music
+                recommendations or simply
+                explore for a while.
+            </p>
+
+            <p>
+                There is no particular way
+                to use The Daily Haven.
+                It is simply a collection
+                of little things that might
+                make an ordinary day feel
+                a little nicer.
+            </p>
+        </div>
+
+        <div class="home-card">
+            <div>
+                📺 ♫
+                <br>
+                ✦ 💿
+            </div>
+            <p>stay for a little while</p>
+        </div>
+    </div>
+
+    <div class="home-about-box">
+        <div class="home-about-content">
+            <div>
+                <h3>☁ about the haven</h3>
+                <p>
+                    The Daily Haven is a cozy
+                    retro-inspired little space
+                    made for finding things to
+                    enjoy during your day.
+                </p>
+
+                <p>
+                    You can browse quotes,
+                    discover something new to watch,
+                    look through music recommendations
+                    or simply click around and stay
+                    for a while.
+                </p>
+
+                <p>
+                    Think of it as a tiny digital
+                    room filled with little things
+                    worth keeping around.
+                </p>
+            </div>
+
+            <img src="ImageAssets/FunnyCat.jpg" alt="Funny cat" class="funny-cat">
+        </div>
+    </div>
+</section>
+
+<section class="page-section" id="watch">
+    <h2 class="section-title">watch <span>something!</span></h2>
+
+    <p class="watch-intro">
+        Need something to watch?
+        Use the generator first,
+        or scroll through the giant
+        Daily Haven watchlist.
+    </p>
+
+    <div class="generator-box">
+        <p>📺 can't choose?</p>
+
+        <button onclick="pickSomething()">
+            pick something for me ✦
+        </button>
+
+        <a
+            class="watch-link"
+            href="https://anikototv.to/home"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            anime link ↗
+        </a>
+
+        <div class="generator-result" id="watchResult">...</div>
+    </div>
+
+    <div class="keep-cinema">
+        <img src="ImageAssets/KeepCinemaAlive.png" alt="Keep cinema alive">
+        <div>
+            <strong>KEEP CINEMA ALIVE!</strong>
+            <p>
+                Pick something new,
+                revisit an old favourite,
+                and keep your watchlist growing.
+            </p>
+        </div>
+    </div>
+
+    <div class="watch-columns">
+        <div class="watch-box">
+            <h3>🎬 films</h3>
+            <ul id="filmList"></ul>
+        </div>
+
+        <div class="watch-box">
+            <h3>✦ anime</h3>
+            <ul id="animeList"></ul>
+        </div>
+
+        <div class="watch-box">
+            <h3>📺 shows</h3>
+            <ul id="showList"></ul>
+        </div>
+    </div>
+
+    <div class="baldi-secret">
+        <img src="ImageAssets/BaldiSaysShhh.jpg" alt="Baldi says shhh">
+        <h3>SHHHHHHH...</h3>
+        <p>DO NOT SHARE THIS.</p>
+        <p>or else i'll find you 👁</p>
+        <p>...anyway have a lovely day :D</p>
+    </div>
+</section>
+
+<section class="page-section" id="quotes">
+    <h2 class="section-title">little <span>quote wall</span></h2>
+
+    <p class="quote-intro">
+        A little collection of words
+        worth keeping around. ♡
+    </p>
+
+    <div class="quote-wall">
+        <div class="quote">
+            <img src="ImageAssets/Quote1.png" alt="Quote one">
+        </div>
+
+        <div class="quote">
+            <img src="ImageAssets/Quote2.png" alt="Quote two">
+        </div>
+
+        <div class="quote">
+            <img src="ImageAssets/Quote3.png" alt="Quote three">
+        </div>
+
+        <div class="quote">
+            <img src="ImageAssets/Quote4.png" alt="Quote four">
+        </div>
+
+        <div class="quote">
+            <img src="ImageAssets/Quote5.png" alt="Quote five">
+        </div>
+    </div>
+</section>
+
+<section class="page-section" id="musicPage">
+    <h2 class="section-title">daily haven <span>music shelf ♫</span></h2>
+
+    <img class="music-radio" src="ImageAssets/MusicRadio.gif" alt="Retro music radio">
+
+    <p class="music-intro">
+        Pick something depending
+        on the mood:
+        peaceful songs for staring
+        out the window,
+        or fun songs for moving
+        around your room.
+    </p>
+
+    <div class="generator-box">
+        <p>♫ can't decide?</p>
+
+        <button onclick="pickRandomSong()">
+            pick a song for me ★
+        </button>
+
+        <div class="generator-result" id="musicResult">...</div>
+    </div>
+
+    <div class="music-shelf">
+        <div class="music-list peaceful-list">
+            <h3>☁ peaceful & dreamy</h3>
+            <div id="peacefulMusic"></div>
+        </div>
+
+        <div class="music-list fun-list">
+            <h3>★ fun & energetic</h3>
+            <div id="funMusic"></div>
+        </div>
+    </div>
+</section>
+
+<section class="page-section" id="contact">
+    <h2 class="section-title">contact <span>me</span></h2>
+
+    <div class="contact-layout">
+        <img src="ImageAssets/WizardTyping.gif" alt="Wizard typing" class="contact-side-gif">
+
+        <div class="contact-card">
+            <h3>✉ find Poker around the internet</h3>
+
+            <p>
+                Have a film, anime,
+                show, song or quote
+                you think belongs in
+                The Daily Haven?
+            </p>
+
+            <div class="contact-links">
+                <a
+                    class="contact-link"
+                    href="https://archiveofourown.org/users/ParadoX_P0K3R"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    📖 AO3 — ParadoX_P0K3R ↗
+                </a>
+
+                <a
+                    class="contact-link"
+                    href="https://www.instagram.com/_kei.tsukkii_/?hl=en"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    📷 Instagram — @_kei.tsukkii_ ↗
+                </a>
+
+                <div class="contact-link">
+                    💬 Discord — <strong>Lol_bear23</strong>
+                </div>
+
+                <a
+                    class="contact-link"
+                    href="mailto:fatimahnoor732@gmail.com"
+                >
+                    ✉ Email — fatimahnoor732@gmail.com
+                </a>
+            </div>
+
+            <div class="reply-box">
+                I'LL CHECK AND GET TO YOU AS SOON AS I CAN!!!
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="page-section" id="credits">
+    <h2 class="section-title">site <span>credits</span></h2>
+
+    <div class="credit-line">
+        <div class="credit-title">WEBSITE CREATOR</div>
+        <div>Poker</div>
+    </div>
+
+    <div class="credit-line">
+        <div class="credit-title">PROGRAMMING</div>
+        <div>HTML, CSS & JavaScript</div>
+    </div>
+
+    <div class="credit-line">
+        <div class="credit-title">FONTS</div>
+        <div>
+            Play • Shantell Sans • VT323
+            <br>
+            Google Fonts
+        </div>
+    </div>
+
+    <div class="credit-line">
+        <div class="credit-title">IMAGE ASSETS</div>
+        <div>
+            BackgroundGIF.gif
+            <br>
+            BannerImage1.jpg
+            <br>
+            StarSpinning.gif
+            <br>
+            Folder.gif
+            <br>
+            KeepCinemaAlive.png
+            <br>
+            MusicRadio.gif
+            <br>
+            BaldiSaysShhh.jpg
+            <br>
+            Quote1–5.png
+            <br>
+            FunnyCat.jpg
+            <br>
+            KrisStanding.jpg
+            <br>
+            WizardTyping.gif
+            <br>
+            Funny2Sonic.gif
+        </div>
+    </div>
+
+    <div class="credits-funny">
+        <img src="ImageAssets/Funny2Sonic.gif" alt="Funny Sonic gif">
+        <p>extra silly credits corner ✦</p>
+    </div>
+</section>
+
+</main>
+</div>
+
+<footer>
+    The Daily Haven
+    ✦
+    created by Poker
+    ✦
+    2026
+</footer>
+
+</div>
+
+<script>
+const films = [
+    "Little Women",
+    "The Truman Show",
+    "Fantastic Mr. Fox",
+    "The Social Network",
+    "Swapped",
+    "Breaking In",
+    "The Lord of the Rings",
+    "12 Angry Men",
+    "Enola Holmes",
+    "Project Hail Mary",
+    "Toy Story 5",
+    "Nimona",
+    "Flipped",
+    "Freefall",
+    "17 Again",
+    "Chennai Express",
+    "The Bad Guys",
+    "Twilight",
+    "The Mitchells vs. the Machines",
+    "Trolls: World Tour",
+    "Spider-Man",
+    "The Boss Baby",
+    "How to Train Your Dragon",
+    "Wish Dragon",
+    "Mean Girls",
+    "The Lego Movie",
+    "In Your Dreams",
+    "Matilda",
+    "Dead Poets Society",
+    "Knives Out",
+    "Glass Onion",
+    "The Princess Bride",
+    "Coraline",
+    "Paddington",
+    "Paddington 2",
+    "School of Rock"
+];
+
+const anime = [
+    "Haikyuu!!",
+    "Mob Psycho 100",
+    "The Disastrous Life of Saiki K.",
+    "Frieren",
+    "Spy × Family",
+    "Kuroko's Basketball",
+    "Link Click",
+    "Crowned in a Hundred Days",
+    "Demon Slayer",
+    "One Piece",
+    "Sakamoto Days",
+    "Fullmetal Alchemist: Brotherhood",
+    "Attack on Titan",
+    "Twisted Wonderland",
+    "The Promised Neverland",
+    "Spirited Away",
+    "Howl's Moving Castle",
+    "From Me to You",
+    "Kamisama Kiss",
+    "Blue Box",
+    "Romantic Killer",
+    "Assassination Classroom",
+    "Horimiya",
+    "Jujutsu Kaisen",
+    "Komi Can't Communicate",
+    "Your Lie in April",
+    "Kakegurui",
+    "Blue Period",
+    "Lookism",
+    "Mashle",
+    "Charlotte",
+    "Slam Dunk",
+    "Black Clover",
+    "Hunter × Hunter",
+    "Dr. Stone",
+    "Noragami",
+    "Sk8 the Infinity",
+    "Blue Lock",
+    "Ouran High School Host Club",
+    "Monthly Girls' Nozaki-kun"
+];
+
+const shows = [
+    "Avatar: The Last Airbender",
+    "Gravity Falls",
+    "Breaking Bad",
+    "The Bear",
+    "Succession",
+    "Adolescence",
+    "My Little Pony",
+    "The Middle",
+    "Teen Titans",
+    "The Good Place",
+    "The Amazing Digital Circus",
+    "Object Shows",
+    "Miraculous",
+    "Talking Tom & Friends",
+    "Arcane",
+    "Young Sheldon",
+    "AlRawabi School for Girls",
+    "Gilmore Girls",
+    "Brooklyn Nine-Nine",
+    "Ninjago",
+    "Carmen Sandiego",
+    "Sonic Prime",
+    "Teen Titans GO!",
+    "Teenage Mutant Ninja Turtles",
+    "Scott Pilgrim Takes Off",
+    "Over the Garden Wall",
+    "The Owl House",
+    "Amphibia",
+    "Hilda",
+    "Bee and PuppyCat",
+    "Kipo and the Age of Wonderbeasts",
+    "She-Ra and the Princesses of Power",
+    "The Dragon Prince",
+    "A Series of Unfortunate Events",
+    "Anne with an E",
+    "Stranger Things",
+    "Wednesday",
+    "Community",
+    "Modern Family",
+    "Abbott Elementary",
+    "Derry Girls",
+    "Never Have I Ever",
+    "The Office",
+    "Good Omens",
+    "Doctor Who",
+    "Heartstopper",
+    "Adventure Time",
+    "Regular Show",
+    "Steven Universe",
+    "Infinity Train",
+    "Summer Camp Island",
+    "We Bare Bears",
+    "Phineas and Ferb",
+    "The Ghost and Molly McGee",
+    "DuckTales",
+    "Star vs. the Forces of Evil",
+    "Craig of the Creek"
+];
+
+const peacefulMusic = [
+    { title:"Space Song", artist:"Beach House" },
+    { title:"Nothing's Gonna Hurt You Baby", artist:"Cigarettes After Sex" },
+    { title:"Sweet", artist:"Cigarettes After Sex" },
+    { title:"Apocalypse", artist:"Cigarettes After Sex" },
+    { title:"Show Me How", artist:"Men I Trust" },
+    { title:"Tree Among Shrubs", artist:"Men I Trust" },
+    { title:"Here With Me", artist:"d4vd" },
+    { title:"Until I Found You", artist:"Stephen Sanchez" },
+    { title:"Glue Song", artist:"beabadoobee" },
+    { title:"Coffee", artist:"beabadoobee" },
+    { title:"From The Start", artist:"Laufey" },
+    { title:"Valentine", artist:"Laufey" },
+    { title:"Promise", artist:"Laufey" },
+    { title:"Francis Forever", artist:"Mitski" },
+    { title:"My Love Mine All Mine", artist:"Mitski" },
+    { title:"Moon Song", artist:"Phoebe Bridgers" },
+    { title:"Falling Behind", artist:"Laufey" },
+    { title:"Tek It", artist:"Cafuné" },
+    { title:"Fade Into You", artist:"Mazzy Star" },
+    { title:"Pretty Girl", artist:"Clairo" },
+    { title:"Sofia", artist:"Clairo" },
+    { title:"505", artist:"Arctic Monkeys" },
+    { title:"Rises the Moon", artist:"Liana Flores" },
+    { title:"Line Without a Hook", artist:"Ricky Montgomery" }
+];
+
+const funMusic = [
+    { title:"Still Feel.", artist:"half•alive" },
+    { title:"The Other Side of Paradise", artist:"Glass Animals" },
+    { title:"Take A Slice", artist:"Glass Animals" },
+    { title:"Heat Waves", artist:"Glass Animals" },
+    { title:"Everybody Talks", artist:"Neon Trees" },
+    { title:"Everybody Wants to Rule the World", artist:"Tears for Fears" },
+    { title:"Walking on a Dream", artist:"Empire of the Sun" },
+    { title:"Young Folks", artist:"Peter Bjorn and John" },
+    { title:"Electric Feel", artist:"MGMT" },
+    { title:"Kids", artist:"MGMT" },
+    { title:"Little Dark Age", artist:"MGMT" },
+    { title:"Good Luck, Babe!", artist:"Chappell Roan" },
+    { title:"APT.", artist:"ROSÉ & Bruno Mars" },
+    { title:"Run Away With Me", artist:"Carly Rae Jepsen" },
+    { title:"Rasputin", artist:"Boney M." },
+    { title:"September", artist:"Earth, Wind & Fire" },
+    { title:"Take On Me", artist:"a-ha" },
+    { title:"Wake Me Up Before You Go-Go", artist:"Wham!" },
+    { title:"Boogie Wonderland", artist:"Earth, Wind & Fire" },
+    { title:"Mr. Blue Sky", artist:"Electric Light Orchestra" },
+    { title:"Just Dance", artist:"Lady Gaga" },
+    { title:"Teenage Dream", artist:"Katy Perry" },
+    { title:"Dog Days Are Over", artist:"Florence + The Machine" },
+    { title:"What You Know", artist:"Two Door Cinema Club" }
+];
+
+function renderList(id, items) {
+    document.getElementById(id).innerHTML =
+        items.map(item => `<li>${item}</li>`).join("");
+}
+
+function renderMusic(id, songs) {
+    document.getElementById(id).innerHTML =
+        songs.map(function(song, index) {
+            const number = String(index + 1).padStart(2, "0");
+            return `
+                <div class="music-item">
+                    <span class="music-number">${number}.</span>
+                    <div>
+                        <strong>${song.title}</strong>
+                        <small>${song.artist}</small>
+                    </div>
+                </div>
+            `;
+        }).join("");
+}
+
+renderList("filmList", films);
+renderList("animeList", anime);
+renderList("showList", shows);
+renderMusic("peacefulMusic", peacefulMusic);
+renderMusic("funMusic", funMusic);
+
+function showPage(pageId, clickedButton) {
+    document.querySelectorAll(".page-section").forEach(function(page) {
+        page.classList.remove("active");
+    });
+
+    document.getElementById(pageId).classList.add("active");
+
+    document.querySelectorAll(".nav-button").forEach(function(button) {
+        button.classList.remove("active");
+    });
+
+    clickedButton.classList.add("active");
+}
+
+function pickSomething() {
+    const everything = [...films, ...anime, ...shows];
+    const choice = everything[Math.floor(Math.random() * everything.length)];
+    document.getElementById("watchResult").textContent = "✦ " + choice + " ✦";
+}
+
+function pickRandomSong() {
+    const songs = [...peacefulMusic, ...funMusic];
+    const choice = songs[Math.floor(Math.random() * songs.length)];
+    document.getElementById("musicResult").textContent =
+        "♫ " + choice.title + " — " + choice.artist + " ♫";
+}
+</script>
+
+</body>
+</html>
